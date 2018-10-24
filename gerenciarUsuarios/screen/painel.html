@@ -9,6 +9,12 @@
    
    body{
      padding-left: 10px;
+	 background-color: #f5f5f5;
+   }
+   
+   a:link, a:visited{
+     text-decoration: none;
+	 color: black;
    }
    
   </style>
@@ -22,7 +28,7 @@
 		  </div>
 		  
 		  <div class="col-md-2" style="margin-top: 20px;">
-		   <a href="#"><span class="glyphicon glyphicon-search"></span></a>
+		   <a href="#" style="text-decoration: none;"><span class="glyphicon glyphicon-search"></span></a>
 		   <input type="text" placeholder=" Pesquise pelo nome." style="margin-left: 3px"/>		   
 		  </div>
 		  
@@ -34,6 +40,61 @@
 		  </div>
 		  
 		</div>
+	</div>
+	
+	<div class="row">
+	  <div class="col-md-12" style="background-color: white; height: 60px;">
+	     <div class="col-md-10">
+	       <h4 style="margin-top: 20px;">USUÁRIOS</h4>
+		 </div>
+		 <div class="col-md-1">
+		   <button type="submit" class="btn btn-primary" style="margin-top: 20px;">CADASTRAR</button>
+		 </div>
+	  </div>
+	</div>
+	
+	
+	<div class="container" style="padding-top: 30px;">
+	   <table class="table table-hover" style="background-color: white;">
+		<thead>
+		  <tr>
+			<th>Usuário</th>
+			<th>Tipo de usuário</th>
+			<th>Usuário ativo</th>
+			<th></th>
+		  </tr>
+		</thead>
+		<tbody>
+		  <tr>
+			<td>John</td>
+			<td>Administrador</td>
+			<td>Sim</td>
+			<td>
+			  <a href="#"><span class="glyphicon glyphicon-pencil"></span></a>
+			  <a href="#"><span class="glyphicon glyphicon-option-horizontal" style="padding-left: 30px;"></span></a>
+			</td>
+		  </tr>
+		  <tr>
+			<td>Mary</td>
+			<td>Usuário padrão</td>
+			<td>Sim</td>
+			<td>
+			  <a href="#"><span class="glyphicon glyphicon-pencil"></span></a>
+			  <a href="#"><span class="glyphicon glyphicon-option-horizontal" style="padding-left: 30px;"></span></a>
+			</td>
+		  </tr>
+		  <tr>
+			<td>July</td>
+			<td>Administrador</td>
+			<td>Não</td>
+			<td>
+			  <a href="#"><span class="glyphicon glyphicon-pencil"></span></a>
+			  <a href="#"><span class="glyphicon glyphicon-option-horizontal" style="padding-left: 30px;"></span></a>
+			</td>
+		  </tr>
+		  
+		</tbody>
+	  </table>
 	</div>
 
 </body>
