@@ -3,7 +3,7 @@ callListarUsuarios = function(){
 			
 			$("#buscar").html(""+
 			"<form><div class='form-group'>"+
-		        "<input type='text' class='form-control' name='nomeUsuario' placeholder='Digite aqui sua busca pelo name...'>"+
+		        "<input type='text' class='form-control' name='nomeUsuario' placeholder='Digite aqui sua busca pelo name do usuário...'>"+
 	          "</div>"+	  
 	             "<button class='btn btn-outline-secondary btn-primary' style='margin-left: 200px;' type='button' onclick='callBuscarUsuario()'>Buscar</button>"+	   
             "</form>");

@@ -8,22 +8,14 @@
   
   <style>
     ul li:hover {	
-	background: gray;	
-	}
-	
-	a:link{
-	 text-decoration: none;
-	 color: black;
-	}
-	a:visited{
-	  color: black;
+	 background: gray;	
 	}
 	
 	.itemOculto{
 	 display: none;
 	}
-	
   </style>
+  <link rel="stylesheet" type="text/css" href="css/mestre.css">
 </head>
 <body>
 
@@ -34,12 +26,7 @@
    </div>
    <div class="col-md-2"></div>
    <div class="col-md-5" style="padding-top: 20px;" id="buscar">
-     <!-- <form>
-	   <div class="form-group">
-		<input type="text" class="form-control" placeholder="Digite aqui sua busca....">
-	   </div>	  
-	   <button class="btn btn-outline-secondary btn-primary" style="margin-left: 200px;" type="submit">Buscar</button>	   
-    </form> -->
+     <!-- botão de pesquisa adicionado dinâmicamente pelas funções de callListarPublicacoes e callListarUsuarios  -->
    </div>
  </div>
 </div>
@@ -55,18 +42,7 @@
    <div class="col-md-8">
      <h1 style="text-align: center;" id="titulo"></h1>
 	 <ul class="list-group" style="text-align: center;" id="lista">
-	 <!--
-	  <a href="#"><li class="list-group-item" id="item1">Cras justo odio</li></a>
-	  <div id="item1Detalhes" class="itemOculto">
-	    <span>Sobrenome: Bret</span></br>
-		<span>Email: Sincere@april.biz</span></br>
-		<span>Address street: Kulas Light</span></br>
-		<span>Address suite: Apt. 556</span></br>		  
-	  </div>
-	  <a href="#"><li class="list-group-item">Dapibus ac facilisis in</li></a>
-	  <a href="#"><li class="list-group-item">Morbi leo risus</li></a>
-	  <a href="#"><li class="list-group-item">Porta ac consectetur ac</li></a>
-	  <a href="#"><li class="list-group-item">Vestibulum at eros</li></a>  -->
+	 <!-- Conteudo da lista adicionado dinâmicamente pelas funções de callListarPublicacoes e callListarUsuarios  -->
 	</ul>
    </div>   
    

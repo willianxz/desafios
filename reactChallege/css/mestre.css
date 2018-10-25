@@ -1,0 +1,16 @@
+a:link{
+	 text-decoration: none;
+	 color: black;
+	}
+	
+a:visited{
+  color: black;
+}
+
+h1, h2, h3{
+	font-family: "Times New Roman", Times, serif;	
+}
+
+span{
+	font-family: "Arial", Times, serif;
+}
