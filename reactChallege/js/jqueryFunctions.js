@@ -88,8 +88,8 @@ callBuscarUsuario = function(){
 			
 			if(nome == data[i].name){
 				
-				$("#lista").append("<a href='#'><li class='list-group-item' id='item"+i+"'>"+data[i].name+"</li></a>");
-				$("#lista").append("<div id='item"+i+"Detalhes' class='itemOculto'> "+
+				$("#lista").append("<a href='#'><li class='list-group-item' id='item0'>"+data[i].name+"</li></a>");
+				$("#lista").append("<div id='item0Detalhes' class='itemOculto'> "+
 				" <span>Sobrenome: "+data[i].username+"</span> </br>"+
 				" <span>Email: "+data[i].email+"</span> </br>"+
 				" <span>Address Street: "+data[i].address.street+"</span> </br>"+
