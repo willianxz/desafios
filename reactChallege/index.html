@@ -18,6 +18,11 @@
 	a:visited{
 	  color: black;
 	}
+	
+	.itemOculto{
+	 display: none;
+	}
+	
   </style>
 </head>
 <body>
@@ -48,13 +53,20 @@
    </div>
      
    <div class="col-md-8">
-     <h1 style="text-align: center;">Lista de Usuários</h1>
-	 <ul class="list-group" style="text-align: center;">
-	  <a href="#"><li class="list-group-item">Cras justo odio</li></a>
+     <h1 style="text-align: center;" id="titulo"></h1>
+	 <ul class="list-group" style="text-align: center;" id="lista">
+	 <!--
+	  <a href="#"><li class="list-group-item" id="item1">Cras justo odio</li></a>
+	  <div id="item1Detalhes" class="itemOculto">
+	    <span>Sobrenome: Bret</span></br>
+		<span>Email: Sincere@april.biz</span></br>
+		<span>Address street: Kulas Light</span></br>
+		<span>Address suite: Apt. 556</span></br>		  
+	  </div>
 	  <a href="#"><li class="list-group-item">Dapibus ac facilisis in</li></a>
 	  <a href="#"><li class="list-group-item">Morbi leo risus</li></a>
 	  <a href="#"><li class="list-group-item">Porta ac consectetur ac</li></a>
-	  <a href="#"><li class="list-group-item">Vestibulum at eros</li></a>
+	  <a href="#"><li class="list-group-item">Vestibulum at eros</li></a>  -->
 	</ul>
    </div>   
    
@@ -67,6 +79,75 @@
  </div>
 </div>
 
+<script>
+
+$(document).ready(function(){
+     
+        $.get("https://jsonplaceholder.typicode.com/users", function(data, status){
+            //alert("Data: " + data + "\nStatus: " + status);
+			//console.log(data);
+			
+			$("#titulo").empty();
+			$("#titulo").append("Lista de Usuários");
+			for(var i = 0; i < data.length;i++){
+			    $("#lista").append("<a href='#'><li class='list-group-item' id='item"+i+"'>"+data[i].name+"</li></a>");
+				$("#lista").append("<div id='item"+i+"Detalhes' class='itemOculto'> "+
+				" <span>Sobrenome: "+data[i].username+"</span> </br>"+
+				" <span>Email: "+data[i].email+"</span> </br>"+
+				" <span>Address Street: "+data[i].address.street+"</span> </br>"+
+				" <span>Address Suite: "+data[i].address.suite+"</span> </br>"+
+				" <span>Address City: "+data[i].address.city+"</span> </br>"+
+				" <span>Address Zipcode: "+data[i].address.zipcode+"</span> </br>"+
+				" <span>Geo Lat: "+data[i].address.geo.lat+"</span> </br>"+
+				" <span>Geo Lng: "+data[i].address.geo.lng+"</span> </br>"+
+				" <span>Phone: "+data[i].phone+"</span> </br>"+
+				" <span>Website: "+data[i].website+"</span> </br>"+
+				" <span>Company Name: "+data[i].company.name+"</span> </br>"+
+				" <span>Company CatchPrase: "+data[i].company.catchPhrase+"</span> </br>"+
+				" <span>Company Bs: "+data[i].company.bs+"</span> "+
+				"</br></div>");
+			}
+			
+			$("#item0").click(function(){
+			  $("#item0Detalhes").toggle();
+			})
+			$("#item1").click(function(){
+			  $("#item1Detalhes").toggle();
+			})
+			$("#item2").click(function(){
+			  $("#item2Detalhes").toggle();
+			})
+			$("#item3").click(function(){
+			  $("#item3Detalhes").toggle();
+			})
+			$("#item4").click(function(){
+			  $("#item4Detalhes").toggle();
+			})
+			$("#item5").click(function(){
+			  $("#item5Detalhes").toggle();
+			})
+			$("#item6").click(function(){
+			  $("#item6Detalhes").toggle();
+			})
+			$("#item7").click(function(){
+			  $("#item7Detalhes").toggle();
+			})
+			$("#item8").click(function(){
+			  $("#item8Detalhes").toggle();
+			})
+			$("#item9").click(function(){
+			  $("#item9Detalhes").toggle();
+			})
+			$("#item10").click(function(){
+			  $("#item10Detalhes").toggle();
+			})		
+			 
+        });
+});
+
+
+
+</script>
 
 </body>
 </html>
