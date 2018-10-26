@@ -40,14 +40,14 @@
     <div class="row">
       <div class="col-md-4"></div>
 	  <div class="col-md-4 panellogin box-shadow">
-	   <form action="screen/painel.html" method="POST">
+	   <form action="backend/autenticar.php" method="POST">
 			<div class="form-group">
 			  <label for="email">Email:</label>
-			  <input type="email" class="form-control" placeholder="meuemail@gmail.com" id="email">			   
+			  <input type="email" class="form-control" placeholder="meuemail@gmail.com" name="email" id="email">			   
 			</div>
 			<div class="form-group">
 			  <label for="password">Password:</label>
-			  <input type="password" class="form-control" id="password">
+			  <input type="password" class="form-control" name="password" id="password">
 			</div>
 			<div class="form-group" style="margin-left: 34%; margin-right: 34%;">
 			 <button type="submit" class="btn btn-primary btn-lg">Efetuar Login</button>
