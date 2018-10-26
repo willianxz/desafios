@@ -162,8 +162,8 @@ if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
 	<script>
 	$(document).ready(function(){
     
-        $.get("gerarConteudoDinamico.php?pagina=painel&operacao=consulta", function(data, status){
-            $("#tabelaDinamica").html(data);
+        $.get("../backend/gerarConteudoDinamico.php?pagina=painel&operacao=consulta", function(data, status){
+            $("#tabelaDinamica").html(data).fadeIn(2000);
 		});
 		
 	});
