@@ -26,7 +26,7 @@ if($emailValido && $senhaValida){
 			die("Connection failed: " . mysqli_connect_error());
 		}
 
-		$sql = "SELECT email, senha FROM usuario";
+		$sql = "SELECT email, senha, nome, sobrenome, tipo FROM usuario";
 		$result = mysqli_query($conectado, $sql) or die (mysqli_error($conectado));
 		
 		
@@ -35,6 +35,7 @@ if($emailValido && $senhaValida){
 			if($row["email"] == $emailValido && $row["senha"] == $senhaValida){
 				$_SESSION['logado'] = true;
 				$_SESSION['nome'] = $row["nome"];
+				$_SESSION['sobrenome'] = $row["sobrenome"];
 				$_SESSION['tipo'] = $row["tipo"];
 				break;
 			}			
@@ -44,7 +45,7 @@ if($emailValido && $senhaValida){
 		mysqli_close($conectado);
 		
 		if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
-		   header("location: ../screen/painel.html");
+		   header("location: ../screen/painel.php");
 		}else{
 		   header('Location: ../index.html');
 		}
