@@ -52,7 +52,7 @@ if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
     <div class="row">
 		<div class="col-md-12" style="background-color: #fafafa;">
 		 <div class="col-md-6">
-		   <h3><a href="../index.html"><span class="glyphicon glyphicon-arrow-left"></span></a> Gerenciar Usuários</h3>
+		   <h3><a href="painel.php?deslogar=true"><span class="glyphicon glyphicon-arrow-left"></span></a> Gerenciar Usuários</h3>
 		  </div>
 		  
 		  <div class="col-md-3" style="margin-top: 20px;">
@@ -87,68 +87,70 @@ if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
 			<div class="modal fade" id="cadastroModal" tabindex="-1" role="dialog" aria-labelledby="cadastroMyModalLabel">
 			  <div class="modal-dialog" role="document">
 				<div class="modal-content">
-				  <div class="modal-header" style="background-color: black;">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<h4 class="modal-title" id="myModalLabel" style="color: white;">Cadastrar Usuário</h4>
-				  </div>
-				  <div class="modal-body">
-					<div class="row container">
-					  <div class="col-md-12">
-					    <div class="col-md-4">
-					     <span>Ativar usuário</span>
-						</div>
-						<div class="col-md-2">
-						    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-							  <label class="btn btn-secondary active">
-								<input type="radio" name="options" id="option1" autocomplete="off" checked> Ativo
-							  </label>
-							  <label class="btn btn-secondary">
-								<input type="radio" name="options" id="option2" autocomplete="off"> Desativo
-							  </label>
+				  <form action="../backend/cadastrarUsuario.php" method="POST">
+					  <div class="modal-header" style="background-color: black;">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" id="myModalLabel" style="color: white;">Cadastrar Usuário</h4>
+					  </div>
+					  <div class="modal-body">
+						<div class="row container">
+						  <div class="col-md-12">
+							<div class="col-md-4">
+							 <span>Ativar usuário</span>
 							</div>
+							<div class="col-md-2">
+								<div class="btn-group btn-group-toggle" data-toggle="buttons">
+								  <label class="btn btn-secondary active">
+									<input type="radio" name="ativoCadastro"  value="1" autocomplete="off" checked> Ativo
+								  </label>
+								  <label class="btn btn-secondary">
+									<input type="radio" name="ativoCadastro"  value="0" autocomplete="off" required> Desativo
+								  </label>
+								</div>
+							</div>
+						  </div>
 						</div>
+						<hr/>
+						<div class="row container">
+						 <div class="col-md-5">
+						   <span>Tipo de usuário</span>
+						   <div class="radio active">
+							  <label><input type="radio" name="tipoCadastro" value="Administrador" checked> Administrador</label>
+							</div>
+							<div class="radio">
+							  <label><input type="radio" name="tipoCadastro" value="Usuário padrão"> Usuário padrão</label>
+							</div>
+						 </div>
+						</div>
+						<hr/>
+						<div class="row container">
+						
+						<div class="col-md-6">
+						   <div class="form-group">
+							  <label for="nome">Nome:</label>
+							  <input type="text" class="form-control" name="nomeCadastro" id="nome" required>
+							</div>
+							<div class="form-group">
+							  <label for="sobrenome">Sobrenome:</label>
+							  <input type="text" class="form-control" name="sobrenomeCadastro" id="sobrenome" required>
+						   </div>
+						   <div class="form-group">
+							  <label for="email">E-mail:</label>
+							  <input type="email" class="form-control" name="emailCadastro" id="email" required>
+						   </div>
+						   <div class="form-group">
+							  <label for="pwd">Senha:</label>
+							  <input type="password" class="form-control" name="senhaCadastro" id="pwd" required>
+						   </div>
+						  </div>
+					   </div>
+						
 					  </div>
-					</div>
-					<hr/>
-					<div class="row container">
-					 <div class="col-md-5">
-					   <span>Tipo de usuário</span>
-					   <div class="radio active">
-						  <label><input type="radio" name="tipodeusuarioCadastro" checked> Administrador</label>
-						</div>
-						<div class="radio">
-						  <label><input type="radio" name="tipodeusuarioCadastro"> Usuário padrão</label>
-						</div>
-					 </div>
-					</div>
-					<hr/>
-					<div class="row container">
-					
-					<div class="col-md-6">
-					   <div class="form-group">
-						  <label for="nome">Nome:</label>
-						  <input type="text" class="form-control" id="nome">
-						</div>
-						<div class="form-group">
-						  <label for="sobrenome">Sobrenome:</label>
-						  <input type="text" class="form-control" id="sobrenome">
-					   </div>
-					   <div class="form-group">
-						  <label for="email">E-mail:</label>
-						  <input type="email" class="form-control" id="email">
-					   </div>
-					   <div class="form-group">
-						  <label for="pwd">Senha:</label>
-						  <input type="password" class="form-control" id="pwd">
-					   </div>
+					  <div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+						<button type="submit" class="btn btn-primary">Salvar</button>
 					  </div>
-				   </div>
-					
-				  </div>
-				  <div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-					<button type="button" class="btn btn-primary">Salvar</button>
-				  </div>
+				  </form>
 				</div>
 			  </div>
 			</div>
