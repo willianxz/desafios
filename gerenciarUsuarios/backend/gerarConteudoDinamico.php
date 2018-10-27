@@ -3,7 +3,6 @@ session_start();
 
 if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
 
- //se getpagina == painel && getoperacao == cadastrar 	
  
  $pagina = isset($_GET['pagina']) && $_GET['pagina'] == "painel";
  $conteudo = isset($_GET['operacao']) && $_GET['operacao'] == "consulta";
@@ -11,6 +10,7 @@ if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
 		 
 		 
 		$conectado = include("conectdb.php");
+		include("funcoes.php");
 		
 			if($conectado){
 				
@@ -48,15 +48,51 @@ if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
 						$id = 		  $row["idusuario"];
 						$nome =       $row["nome"];
 						$sobrenome =  $row["sobrenome"];
-						$email =      $row['email'];				
+						$email =      $row['email'];	
+						$senha = 	  $row['senha'];
 						$tipo =       $row["tipo"];
 						$ativo =      $row['ativo'];
 						
+						$conteudoInputAtivo = "";
 						if($ativo){
 							$ativo = "Sim";
+							
+							$conteudoInputAtivo = "<label class='btn btn-secondary active'>											  
+												<input type='radio' name='options".$id."' id='option1' autocomplete='off' value='1' checked> Ativo
+											  </label>
+											  <label class='btn btn-secondary'>
+												<input type='radio' name='options".$id."' id='option2' autocomplete='off' value='0'> Desativo
+											 </label>";
+							
+							
 						}else{
 							$ativo = "Não";
+							
+							$conteudoInputAtivo = "<label class='btn btn-secondary '>											  
+												<input type='radio' name='options".$id."' id='option1' autocomplete='off' value='1'> Ativo
+											  </label>
+											  <label class='btn btn-secondary active'>
+												<input type='radio' name='options".$id."' id='option2' autocomplete='off' value='0' checked> Desativo
+											 </label>";
 						}
+						
+						$conteudoInputTipo = "";
+						if($tipo == "Administrador"){
+							$conteudoInputTipo = " <div class='radio'>
+										  <label><input type='radio' name='tipodeusuarioEditar".$id."' value='Administrador' checked> Administrador</label>
+										</div>
+										<div class='radio'>
+										  <label><input type='radio' name='tipodeusuarioEditar".$id."' value='Usuário padrão'> Usuário padrão</label>
+										</div>";
+						}else{
+							$conteudoInputTipo = " <div class='radio'>
+									<label><input type='radio' name='tipodeusuarioEditar".$id."' value='Administrador'> Administrador</label>
+									</div>
+									<div class='radio'>
+									 <label><input type='radio' name='tipodeusuarioEditar".$id."' value='Usuário padrão' checked> Usuário padrão</label>
+								</div>";
+						}
+						
 						
 				
 				echo "		
@@ -85,12 +121,9 @@ if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
 										</div>
 										<div class='col-md-2'>
 											<div class='btn-group btn-group-toggle' data-toggle='buttons'>
-											  <label class='btn btn-secondary active'>
-												<input type='radio' name='options".$id."' id='option1' autocomplete='off' checked> Ativo
-											  </label>
-											  <label class='btn btn-secondary'>
-												<input type='radio' name='options".$id."' id='option2' autocomplete='off'> Desativo
-											  </label>
+											
+											  ".$conteudoInputAtivo."
+											 
 											</div>
 										</div>
 									  </div>
@@ -99,12 +132,9 @@ if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
 									<div class='row container'>
 									 <div class='col-md-5'>
 									   <span>Tipo de usuário</span>
-									   <div class='radio'>
-										  <label><input type='radio' name='tipodeusuarioEditar".$id."' checked> Administrador</label>
-										</div>
-										<div class='radio'>
-										  <label><input type='radio' name='tipodeusuarioEditar".$id."'> Usuário padrão</label>
-										</div>
+									   
+									   ".$conteudoInputTipo."
+										
 									 </div>
 									</div>
 									<hr/>
@@ -113,19 +143,19 @@ if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
 									<div class='col-md-6'>
 									   <div class='form-group'>
 										  <label for='nome".$id."'>Nome:</label>
-										  <input type='text' class='form-control' name='nome".$id."' id='nome".$id."'>
+										  <input type='text' class='form-control' name='nome".$id."' id='nome".$id."' value='".$nome."'>
 										</div>
 										<div class='form-group'>
 										  <label for='sobrenome".$id."'>Sobrenome:</label>
-										  <input type='text' class='form-control' name='sobrenome".$id."' id='sobrenome".$id."'>
+										  <input type='text' class='form-control' name='sobrenome".$id."' id='sobrenome".$id."' value='".$sobrenome."'>
 									   </div>
 									   <div class='form-group'>
 										  <label for='email".$id."'>E-mail:</label>
-										  <input type='email' class='form-control' name='email".$id."' id='email".$id."'>
+										  <input type='email' class='form-control' name='email".$id."' id='email".$id."' value='".$email."'>
 									   </div>
 									   <div class='form-group'>
-										  <label for='pwd".$id."'>Senha:</label>
-										  <input type='password' class='form-control' name='pwd".$id."' id='pwd".$id."'>
+										  <label for='senhaEditar".$id."'>Senha:</label>
+										  <input type='password' class='form-control' name='senhaEditar".$id."' id='senhaEditar".$id."' value='".$senha."'>
 									   </div>
 									  </div>
 								   </div>
