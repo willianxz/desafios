@@ -51,6 +51,8 @@ if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
 					"VALUES ('".$nome."', '".$sobrenome."', '".$email."', '".$senhaCadastro."', '".$tipo."', ".$ativo.")";
 					$result = mysqli_query($conectado, $sql) or die (mysqli_error($conectado));
 					
+					mysqli_close($conectado);
+					
 					if($result){
 						header("location: ../screen/painel.php?cadastrado=1");
 						exit;

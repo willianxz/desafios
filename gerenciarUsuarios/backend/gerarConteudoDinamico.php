@@ -61,7 +61,7 @@ if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
 				
 				echo "		
 				  <tr>
-					<td>".$nome."</td>
+					<td>".$nome." ".$sobrenome."</td>
 					<td>".$tipo."</td>
 					<td>".$ativo."</td>
 					<td>
@@ -145,7 +145,7 @@ if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
 						  <span class='glyphicon glyphicon-option-horizontal' style='margin-top: 0px;'></span>
 						</a>
 						<div class='dropdown-menu' aria-labelledby='item".$id."Excluir'>
-						  <li style='text-align: left;'><a class='dropdown-item' href='#'>Excluir</a></li>
+						  <li style='text-align: left;'><a class='dropdown-item' href='../backend/excluirUsuario.php?id=".$id."'>Excluir</a></li>
 						</div>
 					  </span>			  
 					</td>
