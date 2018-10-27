@@ -9,4 +9,6 @@ function verificarInput($inputString){
 	return $ok;
 }
 
+
+
 ?>

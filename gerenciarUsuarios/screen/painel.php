@@ -168,6 +168,13 @@ if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
             $("#tabelaDinamica").html(data).fadeIn(2000);
 		});
 		
+		//Isso serve para ao abrir o modal, não alterar o atual scroll que está.
+		$("#tabelaDinamica").click(function(){
+			$("span").click(function(e){
+				e.preventDefault();
+			});
+		});
+		
 	});
 	
 	</script>

@@ -10,7 +10,6 @@ if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
 		 
 		 
 		$conectado = include("conectdb.php");
-		include("funcoes.php");
 		
 			if($conectado){
 				
@@ -58,10 +57,10 @@ if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
 							$ativo = "Sim";
 							
 							$conteudoInputAtivo = "<label class='btn btn-secondary active'>											  
-												<input type='radio' name='options".$id."' id='option1' autocomplete='off' value='1' checked> Ativo
+												<input type='radio' name='ativo".$id."' autocomplete='off' value='1' checked> Ativo
 											  </label>
 											  <label class='btn btn-secondary'>
-												<input type='radio' name='options".$id."' id='option2' autocomplete='off' value='0'> Desativo
+												<input type='radio' name='ativo".$id."'  autocomplete='off' value='0'> Desativo
 											 </label>";
 							
 							
@@ -69,27 +68,27 @@ if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
 							$ativo = "Não";
 							
 							$conteudoInputAtivo = "<label class='btn btn-secondary '>											  
-												<input type='radio' name='options".$id."' id='option1' autocomplete='off' value='1'> Ativo
+												<input type='radio' name='ativo".$id."'  autocomplete='off' value='1'> Ativo
 											  </label>
 											  <label class='btn btn-secondary active'>
-												<input type='radio' name='options".$id."' id='option2' autocomplete='off' value='0' checked> Desativo
+												<input type='radio' name='ativo".$id."'  autocomplete='off' value='0' checked> Desativo
 											 </label>";
 						}
 						
 						$conteudoInputTipo = "";
 						if($tipo == "Administrador"){
 							$conteudoInputTipo = " <div class='radio'>
-										  <label><input type='radio' name='tipodeusuarioEditar".$id."' value='Administrador' checked> Administrador</label>
+										  <label><input type='radio' name='tipo".$id."' value='Administrador' checked> Administrador</label>
 										</div>
 										<div class='radio'>
-										  <label><input type='radio' name='tipodeusuarioEditar".$id."' value='Usuário padrão'> Usuário padrão</label>
+										  <label><input type='radio' name='tipo".$id."' value='Usuário padrão'> Usuário padrão</label>
 										</div>";
 						}else{
 							$conteudoInputTipo = " <div class='radio'>
-									<label><input type='radio' name='tipodeusuarioEditar".$id."' value='Administrador'> Administrador</label>
+									<label><input type='radio' name='tipo".$id."' value='Administrador'> Administrador</label>
 									</div>
 									<div class='radio'>
-									 <label><input type='radio' name='tipodeusuarioEditar".$id."' value='Usuário padrão' checked> Usuário padrão</label>
+									 <label><input type='radio' name='tipo".$id."' value='Usuário padrão' checked> Usuário padrão</label>
 								</div>";
 						}
 						
@@ -109,62 +108,65 @@ if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
 						<div class='modal fade' id='item".$id."Editar' tabindex='-1' role='dialog' aria-labelledby='item".$id."EditarLabel' aria-hidden='true'>
 						  <div class='modal-dialog' role='document'>
 							<div class='modal-content'>
-							 <div class='modal-header' style='background-color: black;'>
-								<button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
-								 <h4 class='modal-title' id='item".$id."MyModalLabel' style='color: white;'>Editar Usuário</h4>
-							 </div>
-							   <div class='modal-body'>
-									<div class='row container'>
-									  <div class='col-md-12'>
-										<div class='col-md-4'>
-										 <span>Ativar usuário</span>
-										</div>
-										<div class='col-md-2'>
-											<div class='btn-group btn-group-toggle' data-toggle='buttons'>
-											
-											  ".$conteudoInputAtivo."
-											 
+							 <form action='../backend/editarUsuario.php' method='POST'>
+								 <div class='modal-header' style='background-color: black;'>
+									<button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+									 <h4 class='modal-title' id='item".$id."MyModalLabel' style='color: white;'>Editar Usuário</h4>
+								 </div>
+								   <div class='modal-body'>
+										<div class='row container'>
+										  <div class='col-md-12'>
+											<div class='col-md-4'>
+											 <span>Ativar usuário</span>
 											</div>
+											<div class='col-md-2'>
+												<div class='btn-group btn-group-toggle' data-toggle='buttons'>
+												
+												  ".$conteudoInputAtivo."
+												 
+												</div>
+											</div>
+										  </div>
 										</div>
-									  </div>
-									</div>
-									<hr/>
-									<div class='row container'>
-									 <div class='col-md-5'>
-									   <span>Tipo de usuário</span>
-									   
-									   ".$conteudoInputTipo."
+										<hr/>
+										<div class='row container'>
+										 <div class='col-md-5'>
+										   <span>Tipo de usuário</span>
+										   
+										   ".$conteudoInputTipo."
+											
+										 </div>
+										</div>
+										<hr/>
+										<div class='row container'>
 										
-									 </div>
-									</div>
-									<hr/>
-									<div class='row container'>
-									
-									<div class='col-md-6'>
-									   <div class='form-group'>
-										  <label for='nome".$id."'>Nome:</label>
-										  <input type='text' class='form-control' name='nome".$id."' id='nome".$id."' value='".$nome."'>
-										</div>
-										<div class='form-group'>
-										  <label for='sobrenome".$id."'>Sobrenome:</label>
-										  <input type='text' class='form-control' name='sobrenome".$id."' id='sobrenome".$id."' value='".$sobrenome."'>
+										<div class='col-md-6'>
+										   <div class='form-group'>
+											  <label for='nome".$id."'>Nome:</label>
+											  <input type='text' class='form-control' name='nome".$id."' id='nome".$id."' value='".$nome."'>
+											</div>
+											<div class='form-group'>
+											  <label for='sobrenome".$id."'>Sobrenome:</label>
+											  <input type='text' class='form-control' name='sobrenome".$id."' id='sobrenome".$id."' value='".$sobrenome."'>
+										   </div>
+										   <div class='form-group'>
+											  <label for='email".$id."'>E-mail:</label>
+											  <input type='email' class='form-control' name='email".$id."' id='email".$id."' value='".$email."'>
+										   </div>
+										   <div class='form-group'>
+											  <label for='senhaEditar".$id."'>Senha:</label>
+											  <input type='password' class='form-control' name='senhaEditar".$id."' id='senhaEditar".$id."' value='".$senha."'>
+											  <input type='hidden' name='idEditar' value='".$id."'>
+										   </div>
+										  </div>
 									   </div>
-									   <div class='form-group'>
-										  <label for='email".$id."'>E-mail:</label>
-										  <input type='email' class='form-control' name='email".$id."' id='email".$id."' value='".$email."'>
-									   </div>
-									   <div class='form-group'>
-										  <label for='senhaEditar".$id."'>Senha:</label>
-										  <input type='password' class='form-control' name='senhaEditar".$id."' id='senhaEditar".$id."' value='".$senha."'>
-									   </div>
+										
 									  </div>
-								   </div>
-									
-								  </div>
-							  <div class='modal-footer'>
-								<button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>
-								<button type='button' class='btn btn-primary'>Save changes</button>
-							  </div>
+									  <div class='modal-footer'>
+										<button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>
+										<button type='submit' class='btn btn-primary'>Save changes</button>
+									  </div>
+							  </form>
 							</div>
 						  </div>
 						</div>
