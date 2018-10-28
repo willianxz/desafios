@@ -170,9 +170,11 @@ if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
 		
 		//Isso serve para ao abrir o modal, não alterar o atual scroll que está.
 		$("#tabelaDinamica").click(function(){
-			$("span").click(function(e){
+			$(".glyphicon").click(function(e){
 				e.preventDefault();
 			});
+			
+			
 		});
 		
 	});
