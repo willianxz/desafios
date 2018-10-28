@@ -56,8 +56,8 @@ if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
 		  </div>
 		  
 		  <div class="col-md-3" style="margin-top: 20px;">
-		   <a href="#" style="text-decoration: none;"><span class="glyphicon glyphicon-search"></span></a>
-		   <input type="text" placeholder=" Pesquise pelo nome." style="margin-left: 3px"/>		   
+		   <a href="../backend/buscarUsuario.php" id="buscarUsuario"><span class="glyphicon glyphicon-search" ></span></a>
+		   <input type="text" name="nomeUsuario" placeholder=" Pesquise pelo nome." style="margin-left: 3px"/>		   
 		  </div>
 		  
 		  <div class="col-md-3 nav-item dropdown" style="margin-top: 10px;">
@@ -163,7 +163,8 @@ if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
 	
 	<script>
 	$(document).ready(function(){
-    
+		
+		//Chame imediatamente a lista
         $.get("../backend/gerarConteudoDinamico.php?pagina=painel&operacao=consulta", function(data, status){
             $("#tabelaDinamica").html(data).fadeIn(2000);
 		});
@@ -172,8 +173,22 @@ if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
 		$("#tabelaDinamica").click(function(){
 			$(".glyphicon").click(function(e){
 				e.preventDefault();
-			});
+		    });		
+	    });
+		
+		//Se o botão de buscar for clicado faça:
+		$("#buscarUsuario").click(function(e){
+			var campoDeBusca = $("input[name='nomeUsuario']").val();
+			e.preventDefault();
 			
+			//Minha técnica avançada de verificar se está vazio.
+			if(campoDeBusca.trim() !== ''){				
+				//Também poderia fazer utilizando uma requisição do tipo POST, porem é mais lenta.
+				$.get("../backend/buscarUsuario.php?nomeUsuario="+campoDeBusca, function(data, status){
+				  $("#tabelaDinamica").empty();
+				  $("#tabelaDinamica").html(data).fadeIn(2000);
+				});
+			}
 			
 		});
 		

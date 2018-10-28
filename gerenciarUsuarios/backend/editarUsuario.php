@@ -5,7 +5,6 @@ session_start();
 if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
 	
 	
-	
 	 $id =   $_POST['idEditar'];
 	 $nome = $_POST['nome'.$id];
      $sobrenome = $_POST['sobrenome'.$id];
@@ -24,7 +23,7 @@ if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
 			die("Connection failed: " . mysqli_connect_error());
 		}
 		
-		//Se não for um md5:
+		//Se não for um md5(encriptografada):
          if (strlen($_POST['senhaEditar'.$id]) !== 32 ) { //Salve a senha.
 			 $sql = "UPDATE usuario SET ".
 			"nome='".$nome."',".
