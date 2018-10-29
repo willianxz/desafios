@@ -2,8 +2,8 @@
 header('Content-type: text/html; charset=UTF-8');
 session_start();
 
-
-if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
+$administradorLogado = isset($_SESSION['logado']) && $_SESSION['logado'] === true && $_SESSION['tipo'] == "Administrador";
+if($administradorLogado){
 			
 			include("funcoes.php");
 			
@@ -70,8 +70,6 @@ if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
 			 }  
 			  
 		    
-			
-	
 	
 }else{
 	header("localtion: ../index.html");

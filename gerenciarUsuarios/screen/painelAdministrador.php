@@ -166,7 +166,7 @@ if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
 	$(document).ready(function(){
 		
 		//Chame imediatamente a lista
-        $.get("../backend/gerarTabelaDinamica.php?painel=administrador", function(data, status){
+        $.get("../backend/gerarTabelaDinamica.php", function(data, status){
             $("#tabelaDinamica").html(data).fadeIn(2000);
 		});
 		
@@ -174,7 +174,7 @@ if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
 		$("#listarUsuarios").click(function(e){
 			$("#tabelaDinamica").empty();
 			
-			 $.get("../backend/gerarTabelaDinamica.php?painel=administrador", function(data, status){
+			 $.get("../backend/gerarTabelaDinamica.php", function(data, status){
                $("#tabelaDinamica").html(data).fadeIn(2000);			 
 		     });
 		});
@@ -194,7 +194,7 @@ if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
 			//Minha t?cnica avan?ada de verificar se est? vazio.
 			if(campoDeBusca.trim() !== ''){				
 				//Tamb?m poderia fazer utilizando uma requisi??o do tipo POST, porem ? mais lenta.
-				$.get("../backend/buscarUsuario.php?painel=administrador&nomeUsuario="+campoDeBusca, function(data, status){
+				$.get("../backend/buscarUsuario.php?nomeUsuario="+campoDeBusca, function(data, status){
 				  $("#tabelaDinamica").empty();
 				  $("#tabelaDinamica").html(data).fadeIn(2000);
 				});

@@ -1,3 +1,4 @@
+INSERT INTO `gerenciarusuarios`.`usuario` (`nome`, `sobrenome`, `email`, `senha`, `tipo`, `ativo`) VALUES ('Willian', 'Rosa Duarte', 'willian_xzz@hotmail.com', '202cb962ac59075b964b07152d234b70', 'Administrador', '1');
 INSERT INTO `gerenciarusuarios`.`usuario` (`nome`, `sobrenome`, `email`, `senha`, `tipo`, `ativo`) VALUES ('Zezinho', 'Francisco Alves', 'zezinho@gmail.com', '202cb962ac59075b964b07152d234b70', 'Administrador', '1');
 INSERT INTO `gerenciarusuarios`.`usuario` (`nome`, `sobrenome`, `email`, `senha`, `tipo`, `ativo`) VALUES ('Luis', 'Alves', 'luisAlves@hotmail.com', '202cb962ac59075b964b07152d234b70', 'Usuario padrão', '1');
 INSERT INTO `gerenciarusuarios`.`usuario` (`nome`, `sobrenome`, `email`, `senha`, `tipo`, `ativo`) VALUES ('Daniel', 'Ribeiro', 'danielribeiro@gmail.com', '202cb962ac59075b964b07152d234b70', 'Usuario padrão', '0');

@@ -2,11 +2,14 @@
 header('Content-type: text/html; charset=UTF-8');
 session_start();
 
-if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
+$logado = isset($_SESSION['logado']) && $_SESSION['logado'] === true;
+if($logado){
 
  
-     $painel = isset($_GET['painel']) && $_GET['painel'] == "administrador";
-	 if($painel){		 
+     $painelAdministrador = $_SESSION['tipo'] == "Administrador";
+	 $painelUsuarioPadrao = $_SESSION['tipo'] == "Usuário padrão";
+	 
+	 if($painelAdministrador){		 
 		 
 		$conectado = include("conectdb.php");
 		
@@ -21,7 +24,7 @@ if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
 					die("Connection failed: " . mysqli_connect_error());
 				}
 
-				$sql = "SELECT * FROM usuario";
+				$sql = "SELECT * FROM usuario ORDER BY nome asc";
 				$result = mysqli_query($conectado, $sql) or die (mysqli_error($conectado));
 				
 				
@@ -191,7 +194,7 @@ if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
 			
 			 mysqli_close($conectado);
 		   }
-   }else if(isset($_GET['painel']) && $_GET['painel'] == "usuario padrao"){
+   }else if($painelUsuarioPadrao){
 	   $conectado = include("conectdb.php");
 		
 			if($conectado){
@@ -205,7 +208,7 @@ if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
 					die("Connection failed: " . mysqli_connect_error());
 				}
 
-				$sql = "SELECT * FROM usuario";
+				$sql = "SELECT * FROM usuario ORDER BY nome asc";
 				$result = mysqli_query($conectado, $sql) or die (mysqli_error($conectado));
 				
 				

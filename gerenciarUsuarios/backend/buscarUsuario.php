@@ -2,16 +2,17 @@
 header('Content-type: text/html; charset=UTF-8');
 session_start();
 
-
-if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
+$logado = isset($_SESSION['logado']) && $_SESSION['logado'] === true;
+if($logado){
 
 
 	include("funcoes.php");
 	
 	$valido = verificarInput($_GET['nomeUsuario']);
 	
-	$painelAdministrador = isset($_GET['painel']) && $_GET['painel'] == "administrador";
-	$painelUsuarioPadrao = isset($_GET['painel']) && $_GET['painel'] == "usuario padrao";
+	$painelAdministrador = $_SESSION['tipo'] == "Administrador";
+	$painelUsuarioPadrao = $_SESSION['tipo'] == "Usuário padrão";
+	
 	if($valido && $painelAdministrador){
 		
 		$nome = $_GET['nomeUsuario'];
@@ -30,7 +31,7 @@ if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
 
 			//Utilizando a tecnica em SQL do like, eu reduzo grandemente o processamento de tantas informações, aumentando o desempenho da consulta,
 			//alem de fornecer uma pesquisa mais volatil ao usuario e a retirada de uma estrutura de controle dentro do while, comparando a pesquisa com o que ta no banco.
-			$sql = "SELECT * FROM usuario WHERE nome like '".$nome."%'";
+			$sql = "SELECT * FROM usuario WHERE nome like '".$nome."%' ORDER BY nome";
 			$result = mysqli_query($conectado, $sql) or die (mysqli_error($conectado));
 			
 			$usuarioEncontrado = false;
@@ -230,7 +231,7 @@ if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
 
 			//Utilizando a tecnica em SQL do like, eu reduzo grandemente o processamento de tantas informações, aumentando o desempenho da consulta,
 			//alem de fornecer uma pesquisa mais volatil ao usuario e a retirada de uma estrutura de controle dentro do while, comparando a pesquisa com o que ta no banco.
-			$sql = "SELECT * FROM usuario WHERE nome like '".$nome."%'";
+			$sql = "SELECT * FROM usuario WHERE nome like '".$nome."%' ORDER BY nome";
 			$result = mysqli_query($conectado, $sql) or die (mysqli_error($conectado));
 			
 			$usuarioEncontrado = false;
@@ -294,7 +295,6 @@ if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
 }else{
 	header("localtion: ../index.html"); 
 }
-
 
 
 ?>

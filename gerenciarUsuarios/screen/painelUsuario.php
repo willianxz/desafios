@@ -25,7 +25,6 @@ if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
 ?>
 
 
-
 <html>
 <head>
 <meta charset="UTF-8">
@@ -90,7 +89,7 @@ if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
 	$(document).ready(function(){
 		
 		//Chame imediatamente a lista
-        $.get("../backend/gerarTabelaDinamica.php?painel=usuario padrao", function(data, status){
+        $.get("../backend/gerarTabelaDinamica.php", function(data, status){
             $("#tabelaDinamica").html(data).fadeIn(2000);
 		});
 		
@@ -98,7 +97,7 @@ if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
 		$("#listarUsuarios").click(function(e){
 			$("#tabelaDinamica").empty();
 			
-			 $.get("../backend/gerarTabelaDinamica.php?painel=usuario padrao", function(data, status){
+			 $.get("../backend/gerarTabelaDinamica.php", function(data, status){
                $("#tabelaDinamica").html(data).fadeIn(2000);			 
 		     });
 		});
@@ -112,7 +111,7 @@ if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
 			//Minha técnica avançada de verificar se está vazio.
 			if(campoDeBusca.trim() !== ''){				
 				//Tambem poderia fazer utilizando uma requisição do tipo POST, porem é mais lenta.
-				$.get("../backend/buscarUsuario.php?painel=usuario padrao&nomeUsuario="+campoDeBusca, function(data, status){
+				$.get("../backend/buscarUsuario.php?nomeUsuario="+campoDeBusca, function(data, status){
 				  $("#tabelaDinamica").empty();
 				  $("#tabelaDinamica").html(data).fadeIn(2000);
 				});
