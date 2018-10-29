@@ -1,4 +1,5 @@
 <?php
+header('Content-type: text/html; charset=UTF-8');
 session_start();
 
 
@@ -47,10 +48,10 @@ if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
 		mysqli_close($conectado);
 		
 		if($result){
-			header("location: ../screen/painel.php?editado=1");
+			header("location: ../screen/painelAdministrador.php?editado=1");
 			exit;
 		}else{
-			header("location: ../screen/painel.php?editado=0");
+			header("location: ../screen/painelAdministrador.php?editado=0");
 			exit;
 		}		
 	

@@ -1,5 +1,7 @@
 <?php
+header('Content-type: text/html; charset=UTF-8');
 session_start();
+
 
 if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
 			
@@ -54,17 +56,17 @@ if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
 					mysqli_close($conectado);
 					
 					if($result){
-						header("location: ../screen/painel.php?cadastrado=1");
+						header("location: ../screen/painelAdministrador.php?cadastrado=1");
 						exit;
 					}else{
-						header("location: ../screen/painel.php?cadastrado=0");
+						header("location: ../screen/painelAdministrador.php?cadastrado=0");
 						exit;
 					}
 					
 			  }
 			  
 			 }else{
-				header("location: ../screen/painel.php");
+				header("location: ../screen/painelAdministrador.php");
 			 }  
 			  
 		    

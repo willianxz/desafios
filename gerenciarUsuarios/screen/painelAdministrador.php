@@ -1,4 +1,5 @@
 <?php 
+header('Content-type: text/html; charset=UTF-8');
 session_start();
 
 //Se o usuario pediu para deslogar
@@ -27,8 +28,8 @@ if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
 
 <html>
 <head>
-<meta charset="utf-8">
-<title>Gerenciar Usuários</title>
+<meta charset="UTF-8">
+<title>Gerenciar Usu?rios</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -52,7 +53,7 @@ if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
     <div class="row">
 		<div class="col-md-12" style="background-color: #fafafa;">
 		 <div class="col-md-6">
-		   <h3><a href="painel.php?deslogar=true"><span class="glyphicon glyphicon-arrow-left"></span></a> Gerenciar Usuários</h3>
+		   <h3><a href="painelAdministrador.php?deslogar=true"><span class="glyphicon glyphicon-arrow-left"></span></a> Gerenciar Usuários</h3>
 		  </div>
 		  
 		  <div class="col-md-3" style="margin-top: 20px;">
@@ -68,7 +69,7 @@ if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
 				<span style="padding-left: 43px; position: absolute; top: 24px; color: gray;"> <?php echo $tipo ?></span>
 			</a>
 			<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-			  <li style="text-align:center;"><a class="dropdown-item" href="painel.php?deslogar=true">Sair</a></li>
+			  <li style="text-align:center;"><a class="dropdown-item" href="painelAdministrador.php?deslogar=true">Sair</a></li>
 			</div>     
 		  </div>		  
 		</div>
@@ -77,7 +78,7 @@ if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
 	<div class="row">
 	  <div class="col-md-12" style="background-color: white; height: 15%;">
 	     <div class="col-md-9">
-	       <h4 style="margin-top: 3%;">USUÁRIOS</h4>
+	      <h4 style="margin-top: 3%;"><a href="#" id="listarUsuarios">USUÁRIOS</h4></a>
 		 </div>
 		 <div class="col-md-2">
 		   <!-- Button trigger modal -->
@@ -158,7 +159,7 @@ if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
 	  </div>
 	</div>
 	
-	<!-- O conteudo dessa tabela será populado através de JQUERY, fazendo uma requisição para o php. -->
+	<!-- O conteudo dessa tabela ser? populado atrav?s de JQUERY, fazendo uma requisi??o para o php. -->
 	<div id="tabelaDinamica"></div>
 	
 	<script>
@@ -169,21 +170,30 @@ if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
             $("#tabelaDinamica").html(data).fadeIn(2000);
 		});
 		
-		//Isso serve para ao abrir o modal, não alterar o atual scroll que está.
+		//Lista os usuarios se clicar no h4 "Usuarios"
+		$("#listarUsuarios").click(function(e){
+			$("#tabelaDinamica").empty();
+			
+			 $.get("../backend/gerarConteudoDinamico.php?pagina=painel&operacao=consulta", function(data, status){
+               $("#tabelaDinamica").html(data).fadeIn(2000);			 
+		     });
+		});
+		
+		//Isso serve para ao abrir o modal, n?o alterar o atual scroll que est?.
 		$("#tabelaDinamica").click(function(){
 			$(".glyphicon").click(function(e){
 				e.preventDefault();
 		    });		
 	    });
 		
-		//Se o botão de buscar for clicado faça:
+		//Se o bot?o de buscar for clicado fa?a:
 		$("#buscarUsuario").click(function(e){
 			var campoDeBusca = $("input[name='nomeUsuario']").val();
 			e.preventDefault();
 			
-			//Minha técnica avançada de verificar se está vazio.
+			//Minha t?cnica avan?ada de verificar se est? vazio.
 			if(campoDeBusca.trim() !== ''){				
-				//Também poderia fazer utilizando uma requisição do tipo POST, porem é mais lenta.
+				//Tamb?m poderia fazer utilizando uma requisi??o do tipo POST, porem ? mais lenta.
 				$.get("../backend/buscarUsuario.php?nomeUsuario="+campoDeBusca, function(data, status){
 				  $("#tabelaDinamica").empty();
 				  $("#tabelaDinamica").html(data).fadeIn(2000);
