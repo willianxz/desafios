@@ -179,21 +179,21 @@ if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
 		     });
 		});
 		
-		//Isso serve para ao abrir o modal, n?o alterar o atual scroll que est?.
+		//Isso serve para ao abrir o modal, não alterar o atual scroll que está.
 		$("#tabelaDinamica").click(function(){
 			$(".glyphicon").click(function(e){
 				e.preventDefault();
 		    });		
 	    });
 		
-		//Se o bot?o de buscar for clicado fa?a:
+		//Se o botão de buscar for clicado faça:
 		$("#buscarUsuario").click(function(e){
 			var campoDeBusca = $("input[name='nomeUsuario']").val();
 			e.preventDefault();
 			
-			//Minha t?cnica avan?ada de verificar se est? vazio.
+			//Minha técnica avançada de verificar se está vazio.
 			if(campoDeBusca.trim() !== ''){				
-				//Tamb?m poderia fazer utilizando uma requisi??o do tipo POST, porem ? mais lenta.
+				//Também poderia fazer utilizando uma requisição do tipo POST, porem é mais lenta.
 				$.get("../backend/buscarUsuario.php?nomeUsuario="+campoDeBusca, function(data, status){
 				  $("#tabelaDinamica").empty();
 				  $("#tabelaDinamica").html(data).fadeIn(2000);
