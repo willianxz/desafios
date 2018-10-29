@@ -5,10 +5,8 @@ session_start();
 if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
 
  
- $pagina = isset($_GET['pagina']) && $_GET['pagina'] == "painel";
- $conteudo = isset($_GET['operacao']) && $_GET['operacao'] == "consulta";
-	 if($pagina && $conteudo){
-		 
+     $painel = isset($_GET['painel']) && $_GET['painel'] == "administrador";
+	 if($painel){		 
 		 
 		$conectado = include("conectdb.php");
 		
@@ -182,6 +180,70 @@ if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
 						</div>
 					  </span>			  
 					</td>
+				  </tr>
+				  ";
+				  } //Fim do while.
+				  echo "
+				</tbody>
+			   </table>
+			 </div>";
+			 
+			
+			 mysqli_close($conectado);
+		   }
+   }else if(isset($_GET['painel']) && $_GET['painel'] == "usuario padrao"){
+	   $conectado = include("conectdb.php");
+		
+			if($conectado){
+				
+				
+				// Create connection
+				$conectado = include("conectdb.php");
+				
+				// Check connection
+				if (!$conectado) {
+					die("Connection failed: " . mysqli_connect_error());
+				}
+
+				$sql = "SELECT * FROM usuario";
+				$result = mysqli_query($conectado, $sql) or die (mysqli_error($conectado));
+				
+				
+			
+			echo "
+			 <div class='container' style='padding-top: 30px;'>
+			   <table class='table table-hover' style='background-color: white;'>
+				<thead>
+				  <tr>
+					<th>Usuário</th>
+					<th>Tipo de usuário</th>
+					<th>Usuário ativo</th>
+				  </tr>
+				</thead>
+				<tbody>
+				";
+				
+					 /* fetch associative array */		
+				while ($row = mysqli_fetch_assoc($result)) {						
+						
+					$nome =       $row["nome"];
+					$sobrenome =  $row["sobrenome"];
+					$tipo =       $row["tipo"];
+					$ativo =      $row['ativo'];
+						
+					$conteudoInputAtivo = "";
+					if($ativo){
+						$ativo = "Sim";						
+					}else{
+						$ativo = "Não";						
+					}
+						
+						
+				echo "		
+				  <tr>
+					<td>".$nome." ".$sobrenome."</td>
+					<td>".$tipo."</td>
+					<td>".$ativo."</td>					
 				  </tr>
 				  ";
 				  } //Fim do while.

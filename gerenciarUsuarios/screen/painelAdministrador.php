@@ -29,7 +29,7 @@ if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Gerenciar Usu?rios</title>
+<title>Gerenciar Usuários</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -166,7 +166,7 @@ if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
 	$(document).ready(function(){
 		
 		//Chame imediatamente a lista
-        $.get("../backend/gerarConteudoDinamico.php?pagina=painel&operacao=consulta", function(data, status){
+        $.get("../backend/gerarTabelaDinamica.php?painel=administrador", function(data, status){
             $("#tabelaDinamica").html(data).fadeIn(2000);
 		});
 		
@@ -174,7 +174,7 @@ if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
 		$("#listarUsuarios").click(function(e){
 			$("#tabelaDinamica").empty();
 			
-			 $.get("../backend/gerarConteudoDinamico.php?pagina=painel&operacao=consulta", function(data, status){
+			 $.get("../backend/gerarTabelaDinamica.php?painel=administrador", function(data, status){
                $("#tabelaDinamica").html(data).fadeIn(2000);			 
 		     });
 		});
@@ -194,7 +194,7 @@ if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
 			//Minha t?cnica avan?ada de verificar se est? vazio.
 			if(campoDeBusca.trim() !== ''){				
 				//Tamb?m poderia fazer utilizando uma requisi??o do tipo POST, porem ? mais lenta.
-				$.get("../backend/buscarUsuario.php?nomeUsuario="+campoDeBusca, function(data, status){
+				$.get("../backend/buscarUsuario.php?painel=administrador&nomeUsuario="+campoDeBusca, function(data, status){
 				  $("#tabelaDinamica").empty();
 				  $("#tabelaDinamica").html(data).fadeIn(2000);
 				});

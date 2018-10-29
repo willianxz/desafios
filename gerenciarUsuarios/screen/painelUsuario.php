@@ -29,7 +29,7 @@ if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Gerenciar UsuÃ¡rios</title>
+<title>Gerenciar Usuários</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -57,7 +57,7 @@ if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
 		  </div>
 		  
 		  <div class="col-md-3" style="margin-top: 20px;">
-		   <a href="../backend/buscarUsuario.php" id="buscarUsuario"><span class="glyphicon glyphicon-search" ></span></a>
+		   <a href="../backend/buscarUsuario.php?painel=usuario padrao" id="buscarUsuario"><span class="glyphicon glyphicon-search" ></span></a>
 		   <input type="text" name="nomeUsuario" placeholder=" Pesquise pelo nome." style="margin-left: 3px"/>		   
 		  </div>
 		  
@@ -90,7 +90,7 @@ if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
 	$(document).ready(function(){
 		
 		//Chame imediatamente a lista
-        $.get("../backend/gerarConteudoDinamico.php?pagina=painel&operacao=consulta", function(data, status){
+        $.get("../backend/gerarTabelaDinamica.php?painel=usuario padrao", function(data, status){
             $("#tabelaDinamica").html(data).fadeIn(2000);
 		});
 		
@@ -98,17 +98,11 @@ if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
 		$("#listarUsuarios").click(function(e){
 			$("#tabelaDinamica").empty();
 			
-			 $.get("../backend/gerarConteudoDinamico.php?pagina=painel&operacao=consulta", function(data, status){
+			 $.get("../backend/gerarTabelaDinamica.php?painel=usuario padrao", function(data, status){
                $("#tabelaDinamica").html(data).fadeIn(2000);			 
 		     });
 		});
 		
-		//Isso serve para ao abrir o modal, não alterar o atual scroll que está.
-		$("#tabelaDinamica").click(function(){
-			$(".glyphicon").click(function(e){
-				e.preventDefault();
-		    });		
-	    });
 		
 		//Se o botão de buscar for clicado faça:
 		$("#buscarUsuario").click(function(e){
@@ -118,7 +112,7 @@ if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
 			//Minha técnica avançada de verificar se está vazio.
 			if(campoDeBusca.trim() !== ''){				
 				//Tambem poderia fazer utilizando uma requisição do tipo POST, porem é mais lenta.
-				$.get("../backend/buscarUsuario.php?nomeUsuario="+campoDeBusca, function(data, status){
+				$.get("../backend/buscarUsuario.php?painel=usuario padrao&nomeUsuario="+campoDeBusca, function(data, status){
 				  $("#tabelaDinamica").empty();
 				  $("#tabelaDinamica").html(data).fadeIn(2000);
 				});

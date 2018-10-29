@@ -10,8 +10,9 @@ if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
 	
 	$valido = verificarInput($_GET['nomeUsuario']);
 	
-	
-	if($valido){
+	$painelAdministrador = isset($_GET['painel']) && $_GET['painel'] == "administrador";
+	$painelUsuarioPadrao = isset($_GET['painel']) && $_GET['painel'] == "usuario padrao";
+	if($valido && $painelAdministrador){
 		
 		$nome = $_GET['nomeUsuario'];
 	
@@ -211,8 +212,84 @@ if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
 		 	
 		   mysqli_close($conectado);		
 		}
-	}
+	}else if($painelUsuarioPadrao){
+		
+		$nome = $_GET['nomeUsuario'];
+	
+		$conectado = include("conectdb.php");
+			
+		if($conectado){				
+					
+			// Create connection
+			$conectado = include("conectdb.php");
+			
+			// Check connection
+			if (!$conectado) {
+				die("Connection failed: " . mysqli_connect_error());
+			}
 
+			//Utilizando a tecnica em SQL do like, eu reduzo grandemente o processamento de tantas informações, aumentando o desempenho da consulta,
+			//alem de fornecer uma pesquisa mais volatil ao usuario e a retirada de uma estrutura de controle dentro do while, comparando a pesquisa com o que ta no banco.
+			$sql = "SELECT * FROM usuario WHERE nome like '".$nome."%'";
+			$result = mysqli_query($conectado, $sql) or die (mysqli_error($conectado));
+			
+			$usuarioEncontrado = false;
+			 /* fetch associative array */
+
+			echo "
+						 <div class='container' style='padding-top: 30px;'>
+						   <table class='table table-hover' style='background-color: white;'>
+							<thead>
+							  <tr>
+								<th>Usuário</th>
+								<th>Tipo de usuário</th>
+								<th>Usuário ativo</th>
+							  </tr>
+							</thead>
+							<tbody>
+			";
+			
+			while ($row = mysqli_fetch_assoc($result)) {
+			
+					
+					$usuarioEncontrado = true;
+					$nome =       $row["nome"];
+					$sobrenome =  $row["sobrenome"];
+					$tipo =       $row["tipo"];
+					$ativo =      $row['ativo'];
+					
+					$conteudoInputAtivo = "";
+					if($ativo){
+						$ativo = "Sim";						
+					}else{
+						$ativo = "Não";						
+					}
+					
+						echo "		
+						  <tr>
+							<td>".$nome." ".$sobrenome."</td>
+							<td>".$tipo."</td>
+							<td>".$ativo."</td>							
+						  </tr>
+						  ";
+			}//Fim do while
+				 if($usuarioEncontrado === false){
+				  echo "<div class='row'>";
+				   echo "<div class='col-md-12 alert alert-warning' role='alert' style='text-align: center;'>";
+					 echo "<h3>Não foi encontrado nenhum usuario com esse nome: ".$nome."</h3>";				 
+				   echo "</div>";
+				  echo "</div>";
+			  } 
+			  
+			echo "
+				</tbody>
+			   </table>
+			 </div>";
+			
+		 	
+		   mysqli_close($conectado);			
+		}
+	}
 
 }else{
 	header("localtion: ../index.html"); 
