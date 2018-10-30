@@ -58,15 +58,13 @@ if($administradorLogado){
 					if($result){
 						header("location: ../screen/painelAdministrador.php?cadastrado=1");
 						exit;
-					}else{
-						header("location: ../screen/painelAdministrador.php?cadastrado=0");
-						exit;
 					}
 					
 			  }
 			  
 			 }else{
-				header("location: ../screen/painelAdministrador.php");
+				header("location: ../screen/painelAdministrador.php?cadastrado=0");
+				exit;
 			 }  
 			  
 		    

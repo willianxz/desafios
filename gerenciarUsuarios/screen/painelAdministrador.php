@@ -159,7 +159,77 @@ if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
 	  </div>
 	</div>
 	
-	<!-- O conteudo dessa tabela ser? populado atrav?s de JQUERY, fazendo uma requisi??o para o php. -->
+	
+	<?php
+	$usuarioCadastrado = isset($_GET['cadastrado']) && $_GET['cadastrado'] == "1";
+	$usuarioNaoCadastrado = isset($_GET['cadastrado']) && $_GET['cadastrado'] == "0";
+	if($usuarioCadastrado){
+		 echo "<div class='row'>";
+				   echo "<div class='col-md-12 alert alert-success' role='alert' style='text-align: center;'>";
+					 echo "<h3>Usuário cadastrado com sucesso!</h3>";	
+					 echo "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+						<span aria-hidden='true'>&times;</span>
+					  </button>";					 
+				   echo "</div>";
+				  echo "</div>";
+	}else if($usuarioNaoCadastrado){
+		 echo "<div class='row'>";
+				   echo "<div class='col-md-12 alert alert-danger' role='alert' style='text-align: center;'>";
+					 echo "<h3>Não foi possivel efetuar o cadastro.</h3>";	
+					 echo "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+						<span aria-hidden='true'>&times;</span>
+					  </button>";					 
+				   echo "</div>";
+				  echo "</div>";
+	}
+	
+	$usuarioEditado = isset($_GET['editado']) && $_GET['editado'] == "1";
+	$usuarioNaoEditado = isset($_GET['editado']) && $_GET['editado'] == "0";
+	if($usuarioEditado){
+		 echo "<div class='row'>";
+				   echo "<div class='col-md-12 alert alert-success' role='alert' style='text-align: center;'>";
+					 echo "<h3>Usuário editado com sucesso!</h3>";	
+					 echo "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+						<span aria-hidden='true'>&times;</span>
+					  </button>";					 
+				   echo "</div>";
+				  echo "</div>";
+	}else if($usuarioNaoEditado){
+		 echo "<div class='row'>";
+				   echo "<div class='col-md-12 alert alert-danger' role='alert' style='text-align: center;'>";
+					 echo "<h3>Não foi possivel editar o cadastro.</h3>";	
+					 echo "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+						<span aria-hidden='true'>&times;</span>
+					  </button>";					 
+				   echo "</div>";
+				  echo "</div>";
+	}	
+	
+	$usuarioExcluido = isset($_GET['excluido']) && $_GET['excluido'] == "1";
+	$usuarioNaoExcluido = isset($_GET['excluido']) && $_GET['excluido'] == "0";
+	if($usuarioExcluido){
+		 echo "<div class='row'>";
+				   echo "<div class='col-md-12 alert alert-success' role='alert' style='text-align: center;'>";
+					 echo "<h3>Usuário excluido com sucesso!</h3>";	
+					 echo "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+						<span aria-hidden='true'>&times;</span>
+					  </button>";					 
+				   echo "</div>";
+				  echo "</div>";
+	}else if($usuarioNaoExcluido){
+		 echo "<div class='row'>";
+				   echo "<div class='col-md-12 alert alert-danger' role='alert' style='text-align: center;'>";
+					 echo "<h3>Não foi possivel excluir o cadastro.</h3>";	
+					 echo "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+						<span aria-hidden='true'>&times;</span>
+					  </button>";					 
+				   echo "</div>";
+				  echo "</div>";
+	}
+	?>
+	
+	
+	<!-- O conteudo dessa tabela será populado através de JQUERY, fazendo uma requisição para o php. -->
 	<div id="tabelaDinamica"></div>
 	
 	<script>

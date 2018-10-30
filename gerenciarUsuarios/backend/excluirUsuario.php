@@ -33,14 +33,13 @@ if($administradorLogado){
 					if($result){
 						header("location: ../screen/painelAdministrador.php?excluido=1");
 						exit;
-					}else{
-						header("location: ../screen/painelAdministrador.php?excluido=0");
-						exit;
 					}
-					
-			}
+			    }
 		
-	}
+	}else{
+	  header("location: ../screen/painelAdministrador.php?excluido=0");
+	  exit;
+    } 
 	
 	
 }else{

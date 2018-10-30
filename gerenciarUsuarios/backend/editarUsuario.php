@@ -32,7 +32,6 @@ if($administradorLogado){
 	 }
 	 
 	 if($valido){	
-	 
 		 
 		 $nome = $inputsEsperados[0];
 		 $sobrenome = $inputsEsperados[1];
@@ -76,13 +75,11 @@ if($administradorLogado){
 			if($result){
 				header("location: ../screen/painelAdministrador.php?editado=1");
 				exit;
-			}else{
-				header("location: ../screen/painelAdministrador.php?editado=0");
-				exit;
 			}
 		  } 
        }else{
-		 header("location: ../screen/painelAdministrador.php");
+		 header("location: ../screen/painelAdministrador.php?editado=0");
+		 exit;
 	   }  
 	
 }else{
