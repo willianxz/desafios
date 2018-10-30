@@ -81,7 +81,9 @@ if($administradorLogado){
 				exit;
 			}
 		  } 
-       }
+       }else{
+		 header("location: ../screen/painelAdministrador.php");
+	   }  
 	
 }else{
 	header("localtion: ../index.html"); 
