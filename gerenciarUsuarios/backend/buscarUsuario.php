@@ -200,9 +200,14 @@ if($logado){
 				 if($usuarioEncontrado === false){
 				  echo "<div class='row'>";
 				   echo "<div class='col-md-12 alert alert-warning' role='alert' style='text-align: center;'>";
-					 echo "<h3>Não foi encontrado nenhum usuario com esse nome: ".$nome."</h3>";				 
+					 echo "<h3>Não foi encontrado nenhum usuario com esse nome: ".$nome."</h3>";	
+					 echo "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+						<span aria-hidden='true'>&times;</span>
+					  </button>";					 
 				   echo "</div>";
 				  echo "</div>";
+				  
+				  
 			  } 
 			  
 			echo "
