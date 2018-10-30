@@ -50,13 +50,34 @@
 			  <input type="password" class="form-control" name="password" id="password" required>
 			</div>
 			<div class="form-group" style="margin-left: 34%; margin-right: 34%;">
-			 <button type="submit" class="btn btn-primary btn-lg">Efetuar Login</button>
+			 <button type="submit" class="btn btn-primary btn-lg disabled">Efetuar Login</button>
 			</div>
 		</form>
 	  </div>	  
     </div>
   </div>
 </div>
+
+
+<script>
+ $(document).ready(function(){    
+      $("input").keyup(function() { //Após precionarmos uma tecla faça:       
+                     
+        var email = $("input[name=email]").val(); //Pega os valores dos inputs
+        var senha = $("input[name=password]").val();        
+         
+            if(email.trim() == '' || senha.trim() == ''){ //Verifica se tem algum campo que esta vaziu
+               $("button").addClass("disabled", true);//Se um dos dois for vaziu deixe desabilitado o botão
+               $("button").prop("disabled", true); //Apenas muda a propriedade disabled para true                         
+            }else{
+               $("button").removeClass("disabled");//Se nenhum esta vaziu, habilite o botão.
+               $("button").prop("disabled", false);//Apenas muda a propriedade disabled para false
+            }            
+      });
+        
+ }); 
+</script>
+
 
 </body>
 </html>
