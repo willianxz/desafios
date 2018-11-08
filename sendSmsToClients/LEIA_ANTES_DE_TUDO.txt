@@ -1,0 +1,10 @@
+Antes de executar o index.php é necessario fazer os procedimentos abaixo:
+
+1 - abra o arquivo dataBase.php em um editor de texto/IDE
+2 - troque o valor das variaveis de conexao para as utilizadas em seu ambiente
+3 - troque o valor das variaveis de conexao contidas no método selectDB para as utilizadas em seu ambiente
+4 - certifique de que realmente criou o banco utilizando o modelo ou o script.
+
+
+Este programa não poderá ser repassado a terceiros(outras empresas) sem a minha devida autorização
+Este arquivo após ser lido pode ser excluido.
