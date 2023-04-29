@@ -42,7 +42,7 @@
     "babel-preset-stage-0": "^6.5.0",
     "babel-register": "^6.7.2",
     "babel-runtime": "^6.6.1",
-    "browser-sync": "^2.11.1",
+    "browser-sync": "^2.29.1",
     "chai": "^3.4.0",
     "codelyzer": "^5.1.2",
     "connect-history-api-fallback": "^1.1.0",
